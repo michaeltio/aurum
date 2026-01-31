@@ -3,6 +3,18 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "workspaces": [
+    "web",
+    "contract"
+  ],
+  "scripts": {
+    "dev": "bun run --filter web dev",
+    "build": "bun run --filter web build",
+    "start": "bun run --filter web start",
+    "contract:compile": "bun run --filter contract compile",
+    "contract:test": "bun run --filter contract test",
+    "contract:deploy": "bun run --filter contract deploy"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
