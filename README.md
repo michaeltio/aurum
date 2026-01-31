@@ -66,6 +66,6 @@ These scripts ensure the frontend always stays in sync with the latest contract 
 * 🧠 `contract/` → on-chain logic (Solidity)
 * 🔗 `shared/` → ABI & addresses (generated artifacts)
 * 💻 `web/` → frontend (Next.js)
-* `scripts/` → automation (sync & tooling)
+* 🛠️ `scripts/` → automation (sync & tooling)
 
 Each folder contains its own detailed README for deeper explanation.
