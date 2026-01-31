@@ -1,14 +1,14 @@
-# Aurum – Project Structure Overview
+# ✨ Aurum – Project Structure Overview
 
-This repository is organized as a **monorepo** with a clear separation of concerns between smart contracts, shared artifacts, and the frontend application.
+This repository is organized as a **monorepo** with a clear separation of concerns between smart contracts, shared artifacts, and the frontend application 🚀.
 
 ---
 
-## Folder Structure
+## 📂 Folder Structure
 
-### `contract/`
+### 🧠 `contract/`
 
-Contains all **smart contract–related code**.
+Contains all **smart contract–related code** that runs on-chain ⛓️.
 
 Includes:
 
@@ -21,9 +21,9 @@ This folder is responsible only for **on-chain logic**. Smart contracts are comp
 
 ---
 
-### `shared/`
+### 🔗 `shared/`
 
-Contains **generated artifacts** that are shared between contracts and frontend.
+Contains **generated artifacts** that are shared between contracts and frontend 🤝.
 
 Includes:
 
@@ -34,9 +34,9 @@ These files are treated as **build outputs**, not handwritten source code, and a
 
 ---
 
-### `web/`
+### 💻 `web/`
 
-Contains the **frontend application** built with **Next.js**.
+Contains the **frontend application** built with **Next.js** ⚡.
 
 Includes:
 
@@ -49,9 +49,9 @@ This folder handles all **user-facing logic**.
 
 ---
 
-### `scripts/`
+### 🛠️ `scripts/`
 
-Contains utility scripts used for development workflows.
+Contains utility scripts used for development workflows 🤖.
 
 Includes:
 
@@ -61,11 +61,11 @@ These scripts ensure the frontend always stays in sync with the latest contract 
 
 ---
 
-## Summary
+## 📝 Summary
 
-* `contract/` → on-chain logic (Solidity)
-* `shared/` → ABI & addresses (generated artifacts)
-* `web/` → frontend (Next.js)
+* 🧠 `contract/` → on-chain logic (Solidity)
+* 🔗 `shared/` → ABI & addresses (generated artifacts)
+* 💻 `web/
 * `scripts/` → automation (sync & tooling)
 
 Each folder contains its own detailed README for deeper explanation.
