@@ -13,7 +13,8 @@
     "start": "bun run --filter web start",
     "contract:compile": "bun run --filter contract compile",
     "contract:test": "bun run --filter contract test",
-    "contract:deploy": "bun run --filter contract deploy"
+    "contract:deploy": "bun run --filter contract deploy",
+    "abi:sync": "node scripts/abi-sync.mjs"
   },
   "devDependencies": {
     "@types/bun": "latest"
