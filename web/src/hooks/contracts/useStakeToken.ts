@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import type { Abi } from "viem";
 
-import { StakeTokenABI } from "@repo/contract";
+import StakeTokenABI from "@shared/abi/StakeToken.abi.json";
 
 export function useBalanceOf(user?: `0x${string}`) {
   return useReadContract({

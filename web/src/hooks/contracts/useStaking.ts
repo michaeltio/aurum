@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import type { Abi } from "viem";
 
-import { StakingABI } from "@repo/contract";
+import StakingABI from "@shared/abi/Staking.abi.json";
 
 export function useRewardEndTime() {
   return useReadContract({
