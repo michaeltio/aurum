@@ -5,10 +5,14 @@ import { metaMask, injected } from "wagmi/connectors";
 export const config = createConfig({
   chains: [sepolia],
   ssr: true,
-  connectors: [metaMask()],
+  connectors: [
+    metaMask({
+      enableAnalytics: false,
+    }),
+  ],
   transports: {
     [sepolia.id]: http(
-      "https://sepolia.infura.io/v3/cacfe30346a54a1993934247d94a3cce"
+      "https://sepolia.infura.io/v3/cacfe30346a54a1993934247d94a3cce",
     ),
   },
 });

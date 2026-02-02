@@ -23,7 +23,14 @@ export default function StakingStatus() {
     );
   }
 
-  if (!rewardEndTime) return null;
+  if (!rewardEndTime)
+    return (
+      <Card className="p-6">
+        <p className="text-sm text-muted-foreground">
+          Staking status not available
+        </p>
+      </Card>
+    );
 
   const endTimeMs = Number(rewardEndTime) * 1000;
   const endDate = new Date(endTimeMs);

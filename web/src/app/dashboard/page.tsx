@@ -9,7 +9,7 @@ import WithdrawForm from "@/components/WithdrawForm";
 import ClaimRewards from "@/components/ClaimRewards";
 import EmergencyWithdraw from "@/components/EmergencyWithdraw";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function DashboardPage() {
   return (
@@ -19,7 +19,6 @@ export default function DashboardPage() {
 
         <div className="mb-12 space-y-4">
           <StakingStatus />
-          <WalletAddress />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <StakedBalance />

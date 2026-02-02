@@ -25,7 +25,14 @@ export default function PendingRewards() {
       </Card>
     );
   }
-  if (pendingRewards === undefined) return null;
+  if (pendingRewards === undefined)
+    return (
+      <Card className="p-6">
+        <p className="text-sm text-muted-foreground">
+          Pending rewards not available
+        </p>
+      </Card>
+    );
 
   const pendingRewardsValue = pendingRewards as bigint | undefined;
 

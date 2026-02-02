@@ -6,12 +6,13 @@ import {
   useWaitForTransactionReceipt,
 } from "wagmi";
 import type { Abi } from "viem";
+import SepoliaAddress from "@shared/address/sepolia/addresses.json";
 
 import StakingABI from "@shared/abi/Staking.abi.json";
 
 export function useRewardEndTime() {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "rewardEndTime",
   });
@@ -19,7 +20,7 @@ export function useRewardEndTime() {
 
 export function useStakedBalance(user?: `0x${string}`) {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "getStakedBalance",
     args: user ? [user] : undefined,
@@ -31,7 +32,7 @@ export function useStakedBalance(user?: `0x${string}`) {
 
 export function usePendingRewards(user?: `0x${string}`) {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "getPendingRewards",
     args: user ? [user] : undefined,
@@ -43,7 +44,7 @@ export function usePendingRewards(user?: `0x${string}`) {
 
 export function useTotalStaked() {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "totalStaked",
   });
@@ -51,7 +52,7 @@ export function useTotalStaked() {
 
 export function useRewardRate() {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "rewardRate",
   });
@@ -76,8 +77,7 @@ export function useStake() {
 
   const stake = (amount: bigint) => {
     writeContract({
-      address: process.env
-        .NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+      address: SepoliaAddress.Staking as `0x${string}`,
       abi: StakingABI as Abi,
       functionName: "stake",
       args: [amount],
@@ -115,8 +115,7 @@ export function useWithdraw() {
 
   const withdraw = (amount: bigint) => {
     writeContract({
-      address: process.env
-        .NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+      address: SepoliaAddress.Staking as `0x${string}`,
       abi: StakingABI as Abi,
       functionName: "withdraw",
       args: [amount],
@@ -154,8 +153,7 @@ export function useEmergencyWithdraw() {
 
   const emergencyWithdraw = () => {
     writeContract({
-      address: process.env
-        .NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+      address: SepoliaAddress.Staking as `0x${string}`,
       abi: StakingABI as Abi,
       functionName: "emergencyWithdraw",
     });
@@ -192,8 +190,7 @@ export function useClaimRewards() {
 
   const claimRewards = () => {
     writeContract({
-      address: process.env
-        .NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
+      address: SepoliaAddress.Staking as `0x${string}`,
       abi: StakingABI as Abi,
       functionName: "claimRewards",
     });

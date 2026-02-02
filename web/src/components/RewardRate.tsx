@@ -6,7 +6,7 @@ import { formatUnits } from "viem";
 
 export default function RewardRate() {
   const { data: rewardRate, isLoading, error } = useRewardRate();
-
+  console.log("RewardRate component - rewardRate:", rewardRate);
   if (isLoading) {
     return (
       <Card className="p-6">
@@ -22,7 +22,15 @@ export default function RewardRate() {
     );
   }
 
-  if (rewardRate === undefined) return null;
+  if (rewardRate === undefined)
+    return (
+      <Card className="p-6">
+        <p className="text-sm text-muted-foreground">
+          Reward rate not available
+        </p>
+      </Card>
+    );
+
   const rewardRateValue = rewardRate as bigint | undefined;
 
   return (

@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
-    "deploy": "hardhat run --network localhost scripts/deploy.js"
+    "deploy:sepolia": "bunx hardhat ignition deploy ignition/modules/Staking.ts --network sepolia --show-stack-traces"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.4.0",

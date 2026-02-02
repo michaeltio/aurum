@@ -22,7 +22,14 @@ export default function TotalStaked() {
       </Card>
     );
   }
-  if (totalStaked === undefined) return null;
+  if (totalStaked === undefined)
+    return (
+      <Card className="p-6">
+        <p className="text-sm text-muted-foreground">
+          Total staked not available
+        </p>
+      </Card>
+    );
 
   const totalStakedValue = totalStaked as bigint | undefined;
 

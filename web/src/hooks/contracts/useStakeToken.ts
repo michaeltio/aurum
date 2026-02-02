@@ -8,10 +8,11 @@ import {
 import type { Abi } from "viem";
 
 import StakeTokenABI from "@shared/abi/StakeToken.abi.json";
+import SepoliaAddress from "@shared/address/sepolia/addresses.json";
 
 export function useBalanceOf(user?: `0x${string}`) {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKE_TOKEN_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.StakeToken as `0x${string}`,
     abi: StakeTokenABI as Abi,
     functionName: "balanceOf",
     args: user ? [user] : undefined,
@@ -23,7 +24,7 @@ export function useBalanceOf(user?: `0x${string}`) {
 
 export function useAllowance(user?: `0x${string}`, spender?: `0x${string}`) {
   return useReadContract({
-    address: process.env.NEXT_PUBLIC_STAKE_TOKEN_ADDRESS as `0x${string}`,
+    address: SepoliaAddress.StakeToken as `0x${string}`,
     abi: StakeTokenABI as Abi,
     functionName: "allowance",
     args: user && spender ? [user, spender] : undefined,
@@ -34,9 +35,6 @@ export function useAllowance(user?: `0x${string}`, spender?: `0x${string}`) {
 }
 
 export function useApprove() {
-  const stakeTokenAddress = process.env
-    .NEXT_PUBLIC_STAKE_TOKEN_ADDRESS as `0x${string}`;
-
   const {
     writeContract,
     data: hash,
@@ -55,7 +53,7 @@ export function useApprove() {
 
   const approve = (spender: `0x${string}`, amount: bigint) => {
     writeContract({
-      address: stakeTokenAddress,
+      address: SepoliaAddress.StakeToken as `0x${string}`,
       abi: StakeTokenABI as Abi,
       functionName: "approve",
       args: [spender, amount],

@@ -25,7 +25,14 @@ export default function StakedBalance() {
     );
   }
 
-  if (stakedBalance === undefined) return null;
+  if (stakedBalance === undefined)
+    return (
+      <Card className="p-6">
+        <p className="text-sm text-muted-foreground">
+          Staked balance not available
+        </p>
+      </Card>
+    );
 
   const stakedBalanceValue = stakedBalance as bigint | undefined;
 

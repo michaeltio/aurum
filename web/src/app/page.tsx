@@ -7,14 +7,14 @@ import {
   DashboardTotalStaked,
 } from "@/components/DashboardComponents";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function Landing() {
   return (
-    <div className="min-h-screen text-foreground">
+    <div className=" text-foreground ">
       <AsciiBackground />
 
-      <section className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-20">
+      <section className="relative z-10 flex flex-col items-center justify-center px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance">
             Earn Rewards by Staking
