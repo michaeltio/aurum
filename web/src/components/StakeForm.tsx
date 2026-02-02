@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useStake } from "@/hooks/contracts/useStaking";
 import {
   useBalanceOf,
@@ -13,18 +13,21 @@ import {
 import { useConnection } from "wagmi";
 import { formatUnits, parseEther } from "viem";
 import { toast } from "sonner";
+import SepoliaAddress from "@shared/address/sepolia/addresses.json";
 
 export default function StakeCard() {
   const [amount, setAmount] = useState("");
   const { address } = useConnection();
 
   const { data: balance } = useBalanceOf(address);
-  const { data: allowance } = useAllowance(
+  const { data: allowance, refetch: refetchAllowance } = useAllowance(
     address,
-    process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`
+    SepoliaAddress.Staking as `0x${string}`,
   );
   const allowanceValue = allowance as bigint | undefined;
   const rawBalance = balance as bigint | undefined;
+
+  const pendingStakeAmount = useRef<bigint | null>(null);
 
   const {
     approve,
@@ -66,10 +69,8 @@ export default function StakeCard() {
 
     if (!allowanceValue || allowanceValue < amountWei) {
       toast(`Allowance too low. Approving ${amount} tokens...`);
-      approve(
-        process.env.NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS as `0x${string}`,
-        amountWei
-      );
+      pendingStakeAmount.current = amountWei;
+      approve(SepoliaAddress.Staking as `0x${string}`, amountWei);
       return;
     }
 
@@ -78,14 +79,23 @@ export default function StakeCard() {
   };
 
   useEffect(() => {
-    if (!amountWei) return;
-    if (!isApproveConfirmed) return;
-    if (!allowanceValue) return;
-    if (allowanceValue >= amountWei) {
-      toast("Allowance confirmed. Staking now...");
-      stake(amountWei);
-    }
-  }, [isApproveConfirmed, allowanceValue]);
+    const autoStake = async () => {
+      if (!isApproveConfirmed) return;
+      if (!pendingStakeAmount.current) return;
+
+      const { data: newAllowance } = await refetchAllowance();
+      const updatedAllowance = newAllowance as bigint | undefined;
+
+      if (updatedAllowance && updatedAllowance >= pendingStakeAmount.current) {
+        toast.success("Allowance confirmed. Staking now...");
+        const amountToStake = pendingStakeAmount.current;
+        pendingStakeAmount.current = null;
+        stake(amountToStake);
+      }
+    };
+
+    autoStake();
+  }, [isApproveConfirmed, refetchAllowance, stake]);
 
   useEffect(() => {
     if (isStakePending) toast("Stake transaction submitted...");

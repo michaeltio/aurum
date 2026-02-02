@@ -1,3 +1,4 @@
+import "tsconfig-paths/register";
 import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
 import { configVariable, defineConfig } from "hardhat/config";
 import "dotenv/config";

@@ -6,7 +6,11 @@
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
-    "deploy:sepolia": "bunx hardhat ignition deploy ignition/modules/Staking.ts --network sepolia --show-stack-traces"
+    "deploy:sepolia": "bunx hardhat ignition deploy ignition/modules/Staking.ts --network sepolia --show-stack-traces",
+    "script-sepolia:set-reward-rate": "bunx hardhat run scripts/setRewardRate.ts --network sepolia",
+    "script-sepolia:set-reward-end-time": "bunx hardhat run scripts/setRewardEndTime.ts --network sepolia",
+    "script-sepolia:fund-reward": "bunx hardhat run scripts/fundReward.ts --network sepolia",
+    "script-sepolia:transfer-staking-token": "bunx hardhat run scripts/transferStakingToken.ts --network sepolia"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.4.0",

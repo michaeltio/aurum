@@ -23,7 +23,7 @@ export function useBalanceOf(user?: `0x${string}`) {
 }
 
 export function useAllowance(user?: `0x${string}`, spender?: `0x${string}`) {
-  return useReadContract({
+  const result = useReadContract({
     address: SepoliaAddress.StakeToken as `0x${string}`,
     abi: StakeTokenABI as Abi,
     functionName: "allowance",
@@ -32,6 +32,11 @@ export function useAllowance(user?: `0x${string}`, spender?: `0x${string}`) {
       enabled: !!user && !!spender,
     },
   });
+
+  return {
+    ...result,
+    refetch: result.refetch,
+  };
 }
 
 export function useApprove() {
