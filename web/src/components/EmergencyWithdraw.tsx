@@ -24,7 +24,7 @@ export default function EmergencyWithdraw() {
   const { data: stakedBalance } = useStakedBalance(address);
 
   const handleEmergencyWithdraw = () => {
-    if (!stakedBalance || (stakedBalance as bigint) === 0n) {
+    if (!stakedBalance || stakedBalance === "0") {
       console.log("stakedBalance", stakedBalance);
       toast.error("No staked balance to withdraw.");
       return;

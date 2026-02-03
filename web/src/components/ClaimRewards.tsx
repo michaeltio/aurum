@@ -8,7 +8,6 @@ import {
   useClaimRewards,
 } from "@/hooks/contracts/useStaking";
 import { useConnection } from "wagmi";
-import { formatUnits } from "viem";
 import { toast } from "sonner";
 
 export default function ClaimRewards() {
@@ -30,7 +29,6 @@ export default function ClaimRewards() {
   } = usePendingRewards(address);
 
   const rewards = pendingRewards ?? 0n;
-  const formattedRewards = formatUnits(rewards as bigint, 18);
   const isDisabled =
     !isConnected || rewards === 0n || isPending || isConfirming;
 
@@ -43,7 +41,7 @@ export default function ClaimRewards() {
 
   useEffect(() => {
     if (isConfirmed) {
-      toast.success("Rewards claimed successfully 🎉", {
+      toast.success("Rewards claimed successfully", {
         id: "claim-rewards",
       });
     }
@@ -73,7 +71,7 @@ export default function ClaimRewards() {
               Available to Claim
             </p>
             <p className="text-2xl font-bold text-accent">
-              {isLoading ? "..." : formattedRewards}
+              {isLoading ? "..." : rewards.toString()}
             </p>
             <p className="text-xs text-muted-foreground mt-1">Tokens</p>
           </div>

@@ -31,14 +31,10 @@ export default function RewardRate() {
       </Card>
     );
 
-  const rewardRateValue = rewardRate as bigint | undefined;
-
   return (
     <Card className="p-6 border border-border bg-card">
       <p className="text-sm text-muted-foreground mb-2">Reward Rate</p>
-      <p className="text-3xl font-bold text-foreground">
-        {formatUnits(rewardRateValue || 0n, 18)}
-      </p>
+      <p className="text-3xl font-bold text-foreground">{rewardRate}</p>
       <p className="text-xs text-muted-foreground mt-2">per second</p>
     </Card>
   );

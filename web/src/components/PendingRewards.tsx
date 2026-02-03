@@ -34,15 +34,10 @@ export default function PendingRewards() {
       </Card>
     );
 
-  const pendingRewardsValue = pendingRewards as bigint | undefined;
-
   return (
     <Card className="p-6 border border-border bg-card">
       <p className="text-sm text-muted-foreground mb-2">Pending Rewards</p>
-      <p className="text-3xl font-bold text-accent">
-        {" "}
-        {formatUnits(pendingRewardsValue || 0n, 18)}
-      </p>
+      <p className="text-3xl font-bold text-accent">{pendingRewards}</p>
       <p className="text-xs text-muted-foreground mt-2">Tokens</p>
     </Card>
   );

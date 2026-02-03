@@ -13,11 +13,7 @@ export function DashboardRewardRate() {
     return <p className="text-4xl md:text-5xl font-bold">Error</p>;
   }
 
-  return (
-    <p className="text-4xl md:text-5xl font-bold">
-      {Number(formatEther(rewardRate as bigint)).toFixed(2)}
-    </p>
-  );
+  return <p className="text-4xl md:text-5xl font-bold">{rewardRate}</p>;
 }
 
 export function DashboardTotalStaked() {
@@ -31,9 +27,5 @@ export function DashboardTotalStaked() {
     return <p className="text-4xl md:text-5xl font-bold">Error</p>;
   }
 
-  return (
-    <p className="text-4xl md:text-5xl font-bold">
-      {Number(formatEther(totalStaked as bigint)).toFixed(2)}
-    </p>
-  );
+  return <p className="text-4xl md:text-5xl font-bold">{totalStaked}</p>;
 }

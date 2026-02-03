@@ -5,8 +5,9 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import type { Abi } from "viem";
+
 import SepoliaAddress from "@shared/address/sepolia/addresses.json";
+import { type Abi, formatUnits } from "viem";
 
 import StakingABI from "@shared/abi/Staking.abi.json";
 
@@ -26,6 +27,11 @@ export function useStakedBalance(user?: `0x${string}`) {
     args: user ? [user] : undefined,
     query: {
       enabled: !!user,
+      select: (data) => {
+        const value = formatUnits((data as bigint) ?? 0n, 18);
+        const [int, dec = ""] = value.split(".");
+        return dec ? `${int}.${dec.slice(0, 4)}` : int;
+      },
     },
   });
 }
@@ -38,6 +44,11 @@ export function usePendingRewards(user?: `0x${string}`) {
     args: user ? [user] : undefined,
     query: {
       enabled: !!user,
+      select: (data) => {
+        const value = formatUnits((data as bigint) ?? 0n, 18);
+        const [int, dec = ""] = value.split(".");
+        return dec ? `${int}.${dec.slice(0, 4)}` : int;
+      },
     },
   });
 }
@@ -47,6 +58,13 @@ export function useTotalStaked() {
     address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "totalStaked",
+    query: {
+      select: (data) => {
+        const value = formatUnits((data as bigint) ?? 0n, 18);
+        const [int, dec = ""] = value.split(".");
+        return dec ? `${int}.${dec.slice(0, 4)}` : int;
+      },
+    },
   });
 }
 
@@ -55,6 +73,13 @@ export function useRewardRate() {
     address: SepoliaAddress.Staking as `0x${string}`,
     abi: StakingABI as Abi,
     functionName: "rewardRate",
+    query: {
+      select: (data) => {
+        const value = formatUnits((data as bigint) ?? 0n, 18);
+        const [int, dec = ""] = value.split(".");
+        return dec ? `${int}.${dec.slice(0, 4)}` : int;
+      },
+    },
   });
 }
 

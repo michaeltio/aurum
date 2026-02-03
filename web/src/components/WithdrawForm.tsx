@@ -38,16 +38,15 @@ export default function WithdrawForm() {
       return;
     }
 
-    const withdrawAmount = BigInt(parseEther(amount));
-    console.log(withdrawAmount);
-
-    if (withdrawAmount > (stakedBalance as bigint)) {
+    if (Number(amount) > Number(stakedBalance)) {
+      console.log("stakedBalance", stakedBalance);
+      console.log("withdrawAmount", amount);
       toast.error("Cannot withdraw more than staked balance");
       return;
     }
 
     try {
-      withdraw(withdrawAmount);
+      withdraw(amount ? parseEther(amount) : 0n);
     } catch (err) {
       toast.error("Withdraw failed");
     }
@@ -55,7 +54,7 @@ export default function WithdrawForm() {
 
   const handleMax = () => {
     if (!stakedBalance || typeof stakedBalance !== "bigint") return;
-    setAmount(stakedBalance.toString());
+    setAmount(stakedBalance);
   };
 
   useEffect(() => {

@@ -31,14 +31,10 @@ export default function TotalStaked() {
       </Card>
     );
 
-  const totalStakedValue = totalStaked as bigint | undefined;
-
   return (
     <Card className="p-6 border border-border bg-card">
       <p className="text-sm text-muted-foreground mb-2">Total Staked</p>
-      <p className="text-3xl font-bold text-foreground">
-        {formatUnits(totalStakedValue || 0n, 18)}
-      </p>
+      <p className="text-3xl font-bold text-foreground">{totalStaked}</p>
       <p className="text-xs text-muted-foreground mt-2">In Pool</p>
     </Card>
   );

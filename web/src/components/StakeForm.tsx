@@ -25,7 +25,6 @@ export default function StakeCard() {
     SepoliaAddress.Staking as `0x${string}`,
   );
   const allowanceValue = allowance as bigint | undefined;
-  const rawBalance = balance as bigint | undefined;
 
   const pendingStakeAmount = useRef<bigint | null>(null);
 
@@ -52,8 +51,8 @@ export default function StakeCard() {
   }
 
   const handleMax = () => {
-    if (rawBalance) {
-      setAmount(formatUnits(rawBalance, 18));
+    if (balance) {
+      setAmount(balance);
     }
   };
 
@@ -148,7 +147,7 @@ export default function StakeCard() {
             </Button>
           </div>
           <p className="text-xs text-muted-foreground">
-            Available: {rawBalance ? formatUnits(rawBalance, 18) : "0"} Tokens
+            Available: {balance} Tokens
           </p>
         </div>
 

@@ -5,7 +5,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import type { Abi } from "viem";
+import { type Abi, formatUnits } from "viem";
 
 import StakeTokenABI from "@shared/abi/StakeToken.abi.json";
 import SepoliaAddress from "@shared/address/sepolia/addresses.json";
@@ -18,6 +18,11 @@ export function useBalanceOf(user?: `0x${string}`) {
     args: user ? [user] : undefined,
     query: {
       enabled: !!user,
+      select: (data) => {
+        const value = formatUnits((data as bigint) ?? 0n, 18);
+        const [int, dec = ""] = value.split(".");
+        return dec ? `${int}.${dec.slice(0, 4)}` : int;
+      },
     },
   });
 }
